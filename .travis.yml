@@ -24,6 +24,11 @@ install:
   - export CXX="g++-4.8"
   - export CC="gcc-4.8"
 
+  # copy OSG to standard location so that cmake is able to find it
+  - sudo cp -rv osg-340-deb/lib64 /usr/local/
+  - sudo cp -rv osg-340-deb/include /usr/local/
+  - sudo cp -rv osg-340-deb/bin /usr/local/
+
 before_script:
   # Qt variables
   - QTDIR="/opt/qt55"
@@ -31,10 +36,10 @@ before_script:
   - source /opt/qt55/bin/qt55-env.sh
 
   # OpenSceneGraph variables
-  - export PATH=$PATH:$PWD/osg-340-deb/lib64/:$PWD/osg-340-deb/bin/
-  - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/osg-340-deb/lib64/
-  - export OPENTHREADS_INC_DIR=$PWD/osg-340-deb/include/
-  - export OPENTHREADS_LIB_DIR=$PWD/osg-340-deb/lib64/
+  - export LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:$LD_LIBRARY_PATH"
+  - export OPENTHREADS_INC_DIR="/usr/local/include"
+  - export OPENTHREADS_LIB_DIR="/usr/local/lib64:/usr/local/lib"
+  - export PATH="$OPENTHREADS_LIB_DIR:$PATH"
 
   # cmake build of the project
   - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/opt/qt55/lib/cmake 
