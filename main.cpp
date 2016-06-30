@@ -3,7 +3,7 @@
  *
  *       Filename:  main.cpp
  *
- *    Description:  
+ *    Description: Minimalistic project example that uses both Qt and OpenSceneGraph libraries. 
  *
  *        Version:  1.0
  *        Created:  30-Jun-16 10:23:06 AM
