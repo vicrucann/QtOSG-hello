@@ -31,10 +31,10 @@ before_script:
   - source /opt/qt55/bin/qt55-env.sh
 
   # OpenSceneGraph variables
-  - export LD_LIBRARY_PATH="osg-340-deb/lib64:osg-340-deb/lib:$LD_LIBRARY_PATH"
-  - export OPENTHREADS_INC_DIR="osg-340-deb/include"
-  - export OPENTHREADS_LIB_DIR="osg-340-deb/lib64:osg-340-deb/lib"
-  - export PATH="$OPENTHREADS_LIB_DIR:$PATH"
+  - export PATH=$PATH:$PWD/osg-340-deb/lib64/:$PWD/osg-340-deb/bin/
+  - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/osg-340-deb/lib64/
+  - export OPENTHREADS_INC_DIR=$PWD/osg-340-deb/include/
+  - export OPENTHREADS_LIB_DIR=$PWD/osg-340-deb/lib64/
 
   # cmake build of the project
   - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/opt/qt55/lib/cmake 
