@@ -11,8 +11,13 @@ addons:
       - g++-4.8
 
 before_install:
+  # repo for Qt
   - sudo apt-add-repository --yes ppa:beineri/opt-qt551-trusty
   - sudo apt-get -qq update
+
+  # compiled OSG
+  - wget https://github.com/vicrucann/OpenSceneGraph/releases/download/OpenSceneGraph-3.4.0/osg-340-deb.tar.gz
+  - tar -zxvf osg-340-deb.tar.gz
 
 install:
   - sudo apt-get --yes install qt55base qt55imageformats qt55svg
@@ -20,9 +25,18 @@ install:
   - export CC="gcc-4.8"
 
 before_script:
+  # Qt variables
   - QTDIR="/opt/qt55"
   - PATH="$QTDIR/bin:$PATH"
   - source /opt/qt55/bin/qt55-env.sh
+
+  # OpenSceneGraph variables
+  - export LD_LIBRARY_PATH="osg-340-deb/lib64:osg-340-deb/lib:$LD_LIBRARY_PATH"
+  - export OPENTHREADS_INC_DIR="osg-340-deb/include"
+  - export OPENTHREADS_LIB_DIR="osg-340-deb/lib64:osg-340-deb/lib"
+  - export PATH="$OPENTHREADS_LIB_DIR:$PATH"
+
+  # cmake build of the project
   - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/opt/qt55/lib/cmake 
 
 script:
