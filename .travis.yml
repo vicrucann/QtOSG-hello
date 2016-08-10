@@ -4,6 +4,12 @@ compiler: gcc
 sudo: required
 dist: trusty
 
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "PZXQAOCDQX22qB8wvwYAetY+6O/KkumZ8zJhhG3Sy8cIYz2m3UkRl2pyqtk6vxAN+6D5whb8A4nBzkqKah+BBlCwNY/88+p/OkZozR3zeVACFVORBfv2ZWfsYWbQolOSF1sJP+MlqsSEtG68BBGFNG9J2c+u5Z9SV+D4B1oUb/14OmFH24FzPIIOq3i0lPPRt1GYcJtwDIy+sD8/q66+ftOpOtXSWNNsNanCPibZtq1iHAQLkiBoNCOrUYDM+SVyQGv5hw5u/2GE1golvR9BZu4UOXM+E4OgiZOx2I3GIpCzXLcCDwi6GoFRCKqG3KfHmMDfQjfgPsVp8qRQUc4LTwnP1PcuDSWPfjePUMFs3JgrvFFM6nioXith2Mkr7O0bXv8njAdxjyuQ+vz2fHcmMjZ7GqtOouL2TeVryVtM2BaNTrKaF1RaLvYqEjPsbEYt87QNEuO7tc3y6OiEuFjAatniTpozv4cFw21641QfEC12hvTvOAyXWXbYD0aZBXOVbj20aDG6uSLPimg9J8pBV8mdcIGINAdDWNxmkCr5Na+0TsfDXNcDeylcETLdk9KZ9dApoAahfVhDXFYt/VuaPP+YO4QPSqHapuByBq29f8pvSQ9ioRZfedmDrr6BTfcrHcXO0ZdNJiO25NXNxJQbga0jqVYvYKMyCnowzUFuErA="
+
 addons:
   apt:
     packages:
@@ -13,15 +19,10 @@ addons:
   coverity_scan:
     project:
       name: "vicrucann/QtOSG-hello"
-      description: "<Your project description here>"
+      description: "Build submitted via Travis CI of Qt + OpenSceneGraph application"
     notification_email: vicrucann@gmail.com
-    build_command:   "make VERBOSE=1"
+    build_command:   "make"
     branch_pattern: coverity_scan
-
-global:
-  # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-  #   via the "travis encrypt" command using the project repo's public key
-  - secure: "inl400UKu73daJ7Wc3VSs2HWAnqV4dJOtsGCB76FrWGT+VgGr/hOEbE5DBowl+5rT2KZCRFr/I1bynE33Ft3oxROnNPMog/dshiaY907IFu887yX7Uo2Od7q8XLruMsCNitwjwX2LWstBIx7x6/oO6lnWlCDtftSpjkr5iBRrcHftpwc3xR1npfwgzoEN7J4+Gtulq5bldUSOEqyakDktKxgYILGuPmkpiVKkQeaM+mkXtv32zCALWz3EuATIgcV4HGSkKz9iSipcmNYYLfjkuZ3V0O2uVcvghaRB7yyIhibtwqdZFIvRnxdkWf/Y3udDRN6x8WDuJErIADyX7+vpoFDy3LHGRVnNlH4SkemuNBo0Ve1zCHEbHJ0FDN4LGEBO3GFxmRxW6VxFVaW/itNjqsBBVIZ3exut0YVNZ68PdqsNFvlGZC8sJdgvBOrQYw5//QZ0VllF7amUxm0XQkuajWp531FRdGSBxMF2wEvNvlqIoLx2cqLLQWplDXi58OlRlhGDqq5UHc+xoGaAonz7J53b8eQ6hRUnCLrDP+qT622G+6Evcpu01/+4RkTHUlXSrnh0G3+paHlguhWFfp9yxhKAxLkisYA4APOHRTRaSqKaLFBVnDm9KF1M5o/Cr7IgY8ifAam0gUt2mkVFY3HwsvRdz/rymwa/d2/RcqFpSw="
 
 before_install:
   # repo for Qt
