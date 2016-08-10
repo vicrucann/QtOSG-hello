@@ -18,11 +18,10 @@ addons:
     build_command:   "make VERBOSE=1"
     branch_pattern: coverity_scan
 
-env:
-  global:
-    # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-    #    #   via the "travis encrypt" command using the project repo's public key #       
-    - secure: "Nos21UVspgAwvH1hNa9KFxmkNj+y3vQ47DrVGSh5DlO2oYFpFEERQBkLkf685/OyfKtSsHl95CWcRdpH9ZiI6LOhL6XGgqh9TOHI1WA3trGwJWZ6jFBZIX/DihBB2YcTHTxpOs8wm1lAA14d+vaMjrjeCt0YjGjI21mdKP8RtcalguhZeBKV0MdFDYdKBexZtIiVTSLV2/UiJ15+x7O2jtk0kIJV91f/rS9Usc0QC9w1a6pamtw63rhqXARnU5peilYGgXucuZctnK26eMiPfXCMP7XE8ECubpa7rhLGEl5qBWJxKPzyE4HiHKtL3Bj7F8IFfVBnG2aF/eWhYWCHnqq7aoFvdGXFx/f0Dd9MHuaLAV32zMV/aEXtTEfd7XoF/J6riMSyNRHzSxFXy70kXO8FgLjuPKTB7eVBdxolVmFPdhVVtyiRuJPKIt43Zkhbbran6JJ7AQx99Y6z/qnQhTqXaDy2NELXbkNLEb7pK9VEF974DIGzEiKl1XFCpZtDOf48Sbe1kwtjIpaRsQbUtMpvfXlVK1R0Nd3lhRu3Q9TRxtbLLdoXl6cf6Ub/eMVFA5NELsWV2qyDkMDKMf3HXLlGvk+TBiYsnqBbx/V8SxGrE9IQ+8jEq4Znk40Y8pEoJL/tTlLOWlD1nH4RgZSLc+WTuwqKjm8E604sSbCy5eg="
+global:
+  # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+  #   via the "travis encrypt" command using the project repo's public key
+  - secure: "inl400UKu73daJ7Wc3VSs2HWAnqV4dJOtsGCB76FrWGT+VgGr/hOEbE5DBowl+5rT2KZCRFr/I1bynE33Ft3oxROnNPMog/dshiaY907IFu887yX7Uo2Od7q8XLruMsCNitwjwX2LWstBIx7x6/oO6lnWlCDtftSpjkr5iBRrcHftpwc3xR1npfwgzoEN7J4+Gtulq5bldUSOEqyakDktKxgYILGuPmkpiVKkQeaM+mkXtv32zCALWz3EuATIgcV4HGSkKz9iSipcmNYYLfjkuZ3V0O2uVcvghaRB7yyIhibtwqdZFIvRnxdkWf/Y3udDRN6x8WDuJErIADyX7+vpoFDy3LHGRVnNlH4SkemuNBo0Ve1zCHEbHJ0FDN4LGEBO3GFxmRxW6VxFVaW/itNjqsBBVIZ3exut0YVNZ68PdqsNFvlGZC8sJdgvBOrQYw5//QZ0VllF7amUxm0XQkuajWp531FRdGSBxMF2wEvNvlqIoLx2cqLLQWplDXi58OlRlhGDqq5UHc+xoGaAonz7J53b8eQ6hRUnCLrDP+qT622G+6Evcpu01/+4RkTHUlXSrnh0G3+paHlguhWFfp9yxhKAxLkisYA4APOHRTRaSqKaLFBVnDm9KF1M5o/Cr7IgY8ifAam0gUt2mkVFY3HwsvRdz/rymwa/d2/RcqFpSw="
 
 before_install:
   # repo for Qt
