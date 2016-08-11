@@ -6,7 +6,7 @@ dist: trusty
 
 env:
   global:
-   - secure: "PZXQAOCDQX22qB8wvwYAetY+6O/KkumZ8zJhhG3Sy8cIYz2m3UkRl2pyqtk6vxAN+6D5whb8A4nBzkqKah+BBlCwNY/88+p/OkZozR3zeVACFVORBfv2ZWfsYWbQolOSF1sJP+MlqsSEtG68BBGFNG9J2c+u5Z9SV+D4B1oUb/14OmFH24FzPIIOq3i0lPPRt1GYcJtwDIy+sD8/q66+ftOpOtXSWNNsNanCPibZtq1iHAQLkiBoNCOrUYDM+SVyQGv5hw5u/2GE1golvR9BZu4UOXM+E4OgiZOx2I3GIpCzXLcCDwi6GoFRCKqG3KfHmMDfQjfgPsVp8qRQUc4LTwnP1PcuDSWPfjePUMFs3JgrvFFM6nioXith2Mkr7O0bXv8njAdxjyuQ+vz2fHcmMjZ7GqtOouL2TeVryVtM2BaNTrKaF1RaLvYqEjPsbEYt87QNEuO7tc3y6OiEuFjAatniTpozv4cFw21641QfEC12hvTvOAyXWXbYD0aZBXOVbj20aDG6uSLPimg9J8pBV8mdcIGINAdDWNxmkCr5Na+0TsfDXNcDeylcETLdk9KZ9dApoAahfVhDXFYt/VuaPP+YO4QPSqHapuByBq29f8pvSQ9ioRZfedmDrr6BTfcrHcXO0ZdNJiO25NXNxJQbga0jqVYvYKMyCnowzUFuErA="
+    - secure: "l8AMWeXFS44lRVk/5uXbUFdAp1x/xCvCaLB0/VS57jGN66L/vofCXt8om3HlaWJ494O5r3FYxGiyIseTRr3GsWFQlJES9lfEdauPx6UhtaZBdzrnZgj79yVUAGIWxCchzYnsCk67+nZHcqnjDsc2ml84c/XcntcRiv+UMev3IpwOfg0vMRGOFg3+WQESbrL5a/RyRYR5C6dEPZdmRLP7yw/dqdYDXPDEM1k+Z4Xq6W3vLsEfSd6XFln7lY7yMUbjVQ8PBCttDXqu7oQwD9VnRFntlcx2MA82lAZm9xnRztoARWZTcmE4uLN2glScg/EEL+42gflq1Tpf8HwM414i0TmWiawWZJ6MGKBoeSlsa4COe953yV9ly3HM/P9tQi5FBRABcS52dzvj4DWqWVPw1YeFzQWOxf7Kiwbxrme9bcOpVN16Ipyf51/nvkMTx5zzgeXOjXlMeUeAJ1KDCwp4rkgdeiEzHiEewvt9TxfJqaJrdpxdvOWrrJau+bscL6RuEZUjrksqBetP87pmZAZo6WNrr5xivskplK3dqxsPeVh+O5ymWP4BvK4Wz+wEikRqc72kQsBX9PWwbe41pugloBXV0hykT2jX0fdLhLlUZ4sYw86DA2bdSsmqSAI61j0gfEZrLx0MaSuHdPxPUsWdha50stD8jym8kvt7S7KPvuQ="
 
 
 addons:
@@ -14,6 +14,15 @@ addons:
     packages:
       - cmake
       - g++-4.8
+
+    coverity_scan:
+      project:
+        name: "vicrucann/QtOSG-hello"
+        description: "Build submitted via Travis CI of Qt + OpenSceneGraph application"
+      notification_email: vicrucann@gmail.com
+      build_command_prepend: "cov-configure --comptype gcc --compiler gcc-4.8"
+      build_command:   "make VERBOSE=1"
+      branch_pattern: coverity_scan
 
 before_install:
   # repo for Qt
@@ -46,18 +55,15 @@ before_script:
   - export OPENTHREADS_LIB_DIR="/usr/local/lib64:/usr/local/lib"
   - export PATH="$OPENTHREADS_LIB_DIR:$PATH"
 
-  - COVERITY_SCAN_PROJECT_NAME=vicrucann/QtOSG-hello
-  - COVERITY_SCAN_SCRIPT=https://scan.coverity.com/scripts/travisci_build_coverity_scan.sh
-  - COVERITY_SCAN_NOTIFICATION_EMAIL=vicrucann@gmail.com
-  - COVERITY_SCAN_BRANCH_PATTERN=master
-  - COVERITY_SCAN_BUILD_COMMAND=make
-  - COVERITY_SCAN_BUILD_COMMAND_PREPEND="cov-configure --comptype gcc --compiler
-     gcc-4.8"
-
   # cmake build of the project
   - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/opt/qt55/lib/cmake 
 
 script:
-  - if [[ "$TRAVIS_BRANCH" == "$COVERITY_SCAN_BRANCH_PATTERN" ]]; then curl
-        -s "$COVERITY_SCAN_SCRIPT" | bash; fi
+  - if [[ "${COVERITY_SCAN_BRANCH}" == 1 ]];
+      then
+        echo "Don't build on coverty_scan branch.";
+        exit 0;
+    fi
+
+
   - make
