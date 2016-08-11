@@ -21,7 +21,7 @@ addons:
       name: "vicrucann/QtOSG-hello"
       description: "Build submitted via Travis CI of Qt + OpenSceneGraph application"
     notification_email: vicrucann@gmail.com
-    build_command:   "make"
+    build_command:   "make VERBOSE=1"
     branch_pattern: coverity_scan
 
 before_install:
